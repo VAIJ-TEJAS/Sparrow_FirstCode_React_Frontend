@@ -1,0 +1,45 @@
+{
+    "appname": {
+      "editor_theme": "VS Code",
+      "Playgorund_Title": "Title Lorem ipsum",
+      "dir_load": "/data",
+      "ext_url": "https://example.com",
+      "report_issue": "https://example.com",
+      "playground_instructions": [
+        {
+          "Entry A" : " Lorem ipsum",
+          "Entry B" : " Lorem ipsum"
+        }
+      ],
+      "blog_url": "https://blogurl.com/fsdf",
+      "Task_instructions": [
+        {
+          "Lorem Ipsum1":"Lorem ipsum",
+          "Lorem Ipsum2":"Lorem ipsum",
+          "Lorem Ipsum3":"Lorem ipsum",
+          "Lorem Ipsum4":"Lorem ipsum",
+          "Lorem Ipsum5":"Lorem ipsum",
+          "Lorem Ipsum6":"Lorem ipsum",
+          "Lorem Ipsum7":"Lorem ipsum",
+          "Lorem Ipsum8":"Lorem ipsum",
+          "Lorem Ipsum9":"Lorem ipsum",
+          "Lorem Ipsum10":"Lorem ipsum",
+          "Lorem Ipsum11":"Lorem ipsum",
+          "Lorem Ipsum12":"Lorem ipsum",
+          "Lorem Ipsum13":"Lorem ipsum",
+          "Lorem Ipsum14":"Lorem ipsum",
+          "Lorem Ipsum15":"Lorem ipsum",
+          "Lorem Ipsum16":"Lorem ipsum",
+          "Lorem Ipsum17":"Lorem ipsum",
+          "Lorem Ipsum18":"Lorem ipsum",
+          "Lorem Ipsum19":"Lorem ipsum",
+          "Lorem Ipsum20":"Lorem ipsum",
+          "Lorem Ipsum21":"Lorem ipsum",
+          "Lorem Ipsum22":"Lorem ipsum",
+          "Lorem Ipsum23":"Lorem ipsum",
+          "Lorem Ipsum24":"Lorem ipsum",
+          "Lorem Ipsum25":"Lorem ipsum"
+        }
+      ]
+    }
+  }

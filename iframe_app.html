@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Full-Screen iFrame</title>
+    <style>
+        /* Basic reset for margin and padding */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* Full-screen iframe styling */
+        .responsive-iframe-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .responsive-iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Optional: Styling for better readability and appearance */
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            text-align: center;
+            padding: 1em;
+            box-sizing: border-box;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="responsive-iframe-container">
+        <iframe src="http://localhost:5173/sparrow/"></iframe>
+    </div>
+</body>
+</html>
