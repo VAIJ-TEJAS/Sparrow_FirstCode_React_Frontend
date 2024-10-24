@@ -1,0 +1,7 @@
+{
+    "appname": {
+      "editor_theme": "Tokyo Night",
+      "dir_load": "/course/tracks/chapters/lessons/lesson_variablefiles",
+      "files":  ["main.py"]
+    }
+}
