@@ -45,10 +45,17 @@ jobs:
       # Step 7: Deploy the build to the server
       - name: Deploy to Cloud
         run: |
-          # Copy the built files to the server using scp
-          scp -P ${{ secrets.SSH_PORT }} -r ./dist/* ${{ secrets.SSH_CONNECTION }}:/home/fcdeployer01/workspace/Sparrow_FirstCode_React_Frontend/public_html
+          # Create a temporary SSH key file from the secret content
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > /tmp/temp_key
+          chmod 600 /tmp/temp_key
 
-          # Restart nginx on the server
-          ssh -p ${{ secrets.SSH_PORT }} -i ${{ secrets.SSH_PRIVATE_KEY }} -o StrictHostKeyChecking=no ${{ secrets.SSH_CONNECTION }} << 'EOF'
+          # Add the SSH host key to known_hosts (optional, improves security)
+          ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SERVER_IP_ADDRESS }} >> ~/.ssh/known_hosts
+
+          # Run the SSH command using the temporary key
+          ssh -p ${{ secrets.SSH_PORT }} -i /tmp/temp_key -o StrictHostKeyChecking=no ${{ secrets.SSH_CONNECTION }} << 'EOF'
           sudo systemctl restart nginx
           EOF
+
+          # Clean up the temporary key file
+          rm /tmp/temp_key
