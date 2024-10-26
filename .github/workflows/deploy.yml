@@ -1,0 +1,54 @@
+name: Deploy React Application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code from repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      # Step 3: Install project dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Build the project
+      - name: Build the project
+        run: CI=false npm run build
+
+      # Step 5: Set up SSH agent using the SSH private key
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      # Step 6: Add SSH host key to known hosts
+      - name: Add SSH host key
+        run: |
+          mkdir -p ~/.ssh
+          if ! grep -q ${{ secrets.SERVER_IP_ADDRESS }} ~/.ssh/known_hosts; then
+            ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SERVER_IP_ADDRESS }} >> ~/.ssh/known_hosts
+          fi
+
+      # Step 7: Deploy the build to the server
+      - name: Deploy to Cloud
+        run: |
+          # Copy the built files to the server using scp
+          scp -P ${{ secrets.SSH_PORT }} -r ./dist/* ${{ secrets.SSH_CONNECTION }}:/home/fcdeployer01/workspace/Sparrow_FirstCode_React_Frontend/public_html
+
+          # Restart nginx on the server
+          ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no ${{ secrets.SSH_CONNECTION }} << 'EOF'
+          sudo systemctl restart nginx
+          EOF
