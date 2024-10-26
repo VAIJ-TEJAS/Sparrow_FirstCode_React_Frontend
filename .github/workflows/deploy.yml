@@ -49,6 +49,6 @@ jobs:
           scp -P ${{ secrets.SSH_PORT }} -r ./dist/* ${{ secrets.SSH_CONNECTION }}:/home/fcdeployer01/workspace/Sparrow_FirstCode_React_Frontend/public_html
 
           # Restart nginx on the server
-          ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no ${{ secrets.SSH_CONNECTION }} << 'EOF'
+          ssh -p ${{ secrets.SSH_PORT }} -i ${{ secrets.SSH_PRIVATE_KEY }} -o StrictHostKeyChecking=no ${{ secrets.SSH_CONNECTION }} << 'EOF'
           sudo systemctl restart nginx
           EOF
